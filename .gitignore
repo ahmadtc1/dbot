@@ -4,3 +4,5 @@ movies-token.txt
 omdbToxen.txt
 ytToken.txt
 .env
+
+.vercel
