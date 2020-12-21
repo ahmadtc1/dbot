@@ -225,7 +225,7 @@ class MessageHandler
             // console.log(res)
 
             let videoId = res["items"][0]["id"]["videoId"]
-            let trailerLink = "<https://www.youtube.com/watch?v=" + videoId + ">";
+            let trailerLink = "https://www.youtube.com/watch?v=" + videoId;
             msg.channel.send("  **Trailer:** " + trailerLink)
         })
             
