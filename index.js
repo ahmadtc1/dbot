@@ -1,30 +1,51 @@
 const Discord = require('discord.js')
-const axios = require('axios')
+const http = require('http');
+require('dotenv').config()
 
+// Initialize and login to discord client using token code
 const client = new Discord.Client();
+client.login(process.env.DISCORD_TOKEN);
 
-let tokenCode = "NzcxOTkyODAxNjgwNDI0OTgw.X50MUg.vXcyf6kOW7H0ezuOf0UuhU0vTUQ"
-client.login(tokenCode);
+// Import and initialize message handler
+const handler = require("./handlers/messageHandler");
+msgHandler = new handler.MessageHandler();
 
-let genres = null
-axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=40ea41cbc6d20a43cbea8c1891f1df86&language=en-US")
-    .then((res) => {
-        genres = res.data["genres"]
-        for (let i = 0; i < genres.length; ++i)
-        {
-            console.log(genres[i]["name"])
-            console.log(genres[i]["id"])
-        }
-    })
+
+http.createServer((req, res) => {
+res.writeHead(200, {
+    'Content-type': 'text/plain'
+});
+    res.write('Hey');
+    res.end();
+}).listen(4000);
 
 client.on('ready', () => {
-    console.log("The bot is ready");
+    console.log("Discord Movie Bot ready");
 });
 
 client.on('message', (msg) => {
     if (msg.content.toLowerCase().includes("!mb"))
     {
-        msg.channel.send("Hey @" + msg.author.username + " , did you mention me?");
+        if (msg.content.toLowerCase().split(" ")[1] == "help" || msg.content.split(" ").length == 1)
+        {
+            msgHandler.handleHelp(msg);
+        }
+
+        else if (msg.content.toLowerCase().split(" ")[1] == "genres")
+        {
+            msgHandler.handleGenres(msg.content.toLowerCase().split(" ").slice(2), msg);
+        }
+
+        else if (msg.content.toLowerCase().split(" ")[1] == "movies")
+        {
+            msgHandler.handleMovies(msg.content.toLowerCase().split(" ").slice(2), msg);
+        }
+
+        else if (msg.content.toLowerCase().split(" ")[1] == "actors")
+        {
+            console.log("Actor Handler")
+            msgHandler.handleActors(msg.content.toLowerCase().split(" ").slice(2), msg)
+        }
     }
 });
 

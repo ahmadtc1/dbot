@@ -1,3 +1,6 @@
-token.txt
 node_modules/*
+tmdbToken.txt
 movies-token.txt
+omdbToxen.txt
+ytToken.txt
+.env
