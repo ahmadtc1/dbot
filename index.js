@@ -31,21 +31,20 @@ client.on('message', (msg) => {
             msgHandler.handleHelp(msg);
         }
 
-        else if (msg.content.toLowerCase().split(" ")[1] == "genres")
+        else if (msg.content.toLowerCase().split(" ")[1] == "genres" || msg.content.toLowerCase().split(" ")[1] == "genre")
         {
             msgHandler.handleGenres(msg.content.toLowerCase().split(" ").slice(2), msg);
         }
 
-        else if (msg.content.toLowerCase().split(" ")[1] == "movies")
+        else if (msg.content.toLowerCase().split(" ")[1] == "movies" || msg.content.toLowerCase().split(" ")[1] == "movie")
         {
             msgHandler.handleMovies(msg.content.toLowerCase().split(" ").slice(2), msg);
         }
 
-        else if (msg.content.toLowerCase().split(" ")[1] == "actors")
+        else if (msg.content.toLowerCase().split(" ")[1] == "actors" || msg.content.toLowerCase().split(" ")[1] == "actor")
         {
             console.log("Actor Handler")
             msgHandler.handleActors(msg.content.toLowerCase().split(" ").slice(2), msg)
         }
     }
 });
-
