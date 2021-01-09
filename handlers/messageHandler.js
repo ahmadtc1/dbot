@@ -128,9 +128,11 @@ class MessageHandler
                 {
                     let title = res['results'][i]['title'];
                     let rank = res['results'][i]['vote_average'];
+                    let year = res['results'][i]['release_date'].slice(0, 4)
                     console.log("Title: " + title);
                     console.log("Rating: " + rank + "/10");
-                    let movieInfo = "**Title:** " + "*" + title + "*" + ", **Rating:** *" + rank + "/10*" + "\n"
+                    console.log("Year: " + year)
+                    let movieInfo = "**Title:** " + "*" + title + "*" + "\n     **Rating:** *" + rank + "/10*" + ",     **Year:** *" + year + "*\n"
                     moviesString += movieInfo;
                 }
                 msg.channel.send(moviesString)
