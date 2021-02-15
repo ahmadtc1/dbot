@@ -2,5 +2,5 @@
 A Discord Bot working for you 🤖
 
 
-### Object Tracking
+### Bot Usage
 ![Movie Bot](/img/dbot.gif)
